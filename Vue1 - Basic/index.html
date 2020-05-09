@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="assets/index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        
+      <div class="nav-bar"></div>
+
+      <div id="app">       
+          <div class="product">
+  
+      <!-- <div class="product-image">
+        <img :src="my_image" />
+      </div> -->
+  
+      <div class="product-image">
+        <img :src="image" />
+      </div>
+  
+      <div class="product-info">
+          <h1>{{ title }}</h1>
+  
+          <button 
+          @click="addToCart" 
+          :disabled="!onStock"
+          :class="{disabledButton:!onStock}"
+          >Add to cart</button>
+  
+          <div class="cart"><p>{{cart}}</p></div>
+          <button @click="removeFromCart()">-</button>
+          <!-- <span v-if="onStock">In Stock</span>
+          <span v-else>Out of Stock</span> -->
+          
+          <p>{{shipping}}</p>
+  
+          <p>{{Sale}}</p>
+          <p v-show="onStock">IN STOCK</p>
+          <p 
+            v-show="!onStock"
+            :class="{outOfStockXX:!onStock}"
+            :style="{textDecoration:'line-through'}"
+          >OUT OF STOCK</p>
+  
+          <p v-if="inventory >= 10">Quantity available : {{inventory}} units</p>
+          <p v-else-if = "inventory > 0 && inventory < 10">HURRY UP. LIMITED STOCK. Only {{inventory}} units left</p>
+          <p v-else>SORRY OUT OF STOCK NOW</p>
+  
+          <!-- <p v-show="onSale">ON SALE</p> -->
+  
+          Composition:
+          <ul>
+              <li v-for="item in items">{{item}}</li>
+          </ul>
+           
+          <div class="color-box"
+               v-for="(variant,index) in variants"  
+               :key="variant.variantId"
+               :style="{backgroundColor:variant.variantColor}"
+               @click="updateImage(variant.variantImage)"
+               @mouseover="updateImageIndex(index)"
+              >
+          </div>
+  
+          Sizes: 
+          <table>
+              <tr>
+                  <th>Size</th><th>Description</th>
+              </tr>
+              <tr v-for="size in sizes">
+                  <td> {{size.code}} </td>
+                  <td> {{size.desc}} </td>
+              </tr>
+          </table>
+  
+        <a :href="link" target="_blank">More products like this</a>
+  
+      </div>
+      
+      </div>
+
+
+      <script src="index.js"></script>
+
+    </body>
+</html>
+
